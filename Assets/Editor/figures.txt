@@ -1,0 +1,200 @@
+Still Life
+Block
+**
+**
+
+Beehive
+ **
+*  *
+ **
+
+Loaf
+ **
+*  *
+ * *
+  *
+
+Tub
+ *
+* *
+ *
+
+Boat
+**
+* *
+ *
+
+Oscillators
+Blinker
+***
+
+Beacon
+**
+*  *
+  **
+
+Figure Eight
+**
+** *
+    *
+ *
+  * **
+    **
+
+Octagon
+   **
+  *  *
+ *    *
+*      *
+*      *
+ *    *
+  *  *
+   **
+
+Pentadecathlon
+  *    *
+** **** **
+  *    *
+
+Spark Coil
+**    **
+* *  * *
+  *  *
+* *  * *
+**    **
+
+Wheel
+      **
+      **
+
+    ****
+** *    *
+** *  * *
+   *   ** **
+   * *  * **
+    ****
+
+    **
+    **
+
+Spaceships
+Glider
+ *
+  *
+***
+
+Pulsar
+  ***   ***
+
+*    * *    *
+*    * *    *
+*    * *    *
+  ***   ***
+
+  ***   ***
+*    * *    *
+*    * *    *
+*    * *    *
+
+  ***   ***
+
+Moon
+ *
+*
+*
+ *
+
+Loafer
+ **  * **
+*  *  **
+ * *
+  *
+        *
+      ***
+     *
+      *
+      **
+
+Lightweight Spaceship
+ *  *
+*
+*   *
+****
+
+Mediumweight Spaceship
+   *
+ *   *
+*
+*    *
+*****
+
+Heavyweight Spaceship
+   **
+ *    *
+*
+*     *
+******
+
+Guns
+Gospel's Glider Gun
+                        *
+                      * *
+            **      **            **
+           *   *    **            **
+**        *     *   **
+**        *   * **    * *
+          *     *       *
+           *   *
+            **
+
+Methuselahs
+Acorn
+ *
+   *
+**  ***
+
+B-Heptomino
+* **
+***
+ *
+
+Diehard
+      *
+**
+ *   ***
+
+Glider By The Dozen
+**  *
+*   *
+*  **
+
+Piheptomino
+***
+* *
+* *
+
+Thunderbird
+***
+
+ *
+ *
+ *
+
+Rabbit
+*   ***
+***  *
+ *
+
+Wicks
+Ant
+**
+  **
+  **
+**
+
+Blinker Fuse
+**  * **
+***** * *
+        * *** ***
+***** * *
+**  * **

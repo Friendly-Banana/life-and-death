@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25af2fc1a3b437e289090b9e6a5d200f, type: 3}
+  m_Name: Loafer
+  m_EditorClassIdentifier: 
+  category: 2
+  width: 9
+  height: 9
+  cells:
+  - array: 000100000000000000
+  - array: 010001000000000000
+  - array: 010000010000000000
+  - array: 000101000000000000
+  - array: 000000000000000000
+  - array: 010000000000010000
+  - array: 000100000001000101
+  - array: 010100000001000001
+  - array: 010000000101000000

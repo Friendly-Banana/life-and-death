@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25af2fc1a3b437e289090b9e6a5d200f, type: 3}
+  m_Name: Heavyweight Spaceship
+  m_EditorClassIdentifier: 
+  category: 2
+  width: 7
+  height: 5
+  size: {x: 9, y: 10}
+  cells:
+  - array: 0000010101
+  - array: 0001000001
+  - array: 0000000001
+  - array: 0100000001
+  - array: 0100000001
+  - array: 0000000001
+  - array: 0001000100
