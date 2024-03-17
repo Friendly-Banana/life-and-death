@@ -1,61 +1,68 @@
-using LoD;
 using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NRP : NetworkRoomPlayer
-{
-    [SyncVar(hook = nameof(ChangeName))]
-    public string playerName = "Player";
-    [SyncVar(hook = nameof(ChangeColor))]
-    public Color color = Color.white;
+namespace LoD {
+    public class NRP : NetworkRoomPlayer {
+        [SyncVar(hook = nameof(ChangeName))] public string playerName = "Player";
 
-    public bool isHost => !isClientOnly;//index == 0
+        [SyncVar(hook = nameof(ChangeColor))] public Color color = Color.white;
 
-    [Command]
-    public void CmdSetName(string newName) => playerName = string.IsNullOrWhiteSpace(newName) ? "Player" + index : newName;
+        private GameObject info;
 
-    [Command]
-    public void CmdSetColor(Color newColor) => color = newColor;
+        public bool isHost => !isClientOnly; //index == 0
 
-    [Command]
-    public void CmdKickPlayer(NRP player)
-    {
-        // no self-kick
-        if (isHost && player.index != index)
-            player.connectionToClient.Disconnect();
-    }
-
-    GameObject info;
-    void ChangeName(string _, string newName) { if (info != null) info.GetComponentsInChildren<TMP_Text>()[0].text = newName; }
-    void ChangeColor(Color _, Color newColor) { if (info != null) info.GetComponentsInChildren<TMP_Text>()[0].color = newColor; }
-    
-    public override void OnClientEnterRoom()
-    {
-        if (info != null)
-        {
-            return;
+        [Command]
+        public void CmdSetName(string newName) {
+            playerName = string.IsNullOrWhiteSpace(newName) ? "Player" + index : newName;
         }
-        info = Instantiate(Lobby.singleton.playerPrefab, Lobby.singleton.playerParent);
-        TMP_Text[] texts = info.GetComponentsInChildren<TMP_Text>();
-        texts[0].text = playerName;
-        texts[0].color = color;
-        texts[1].text = readyToBegin ? "Ready" : "Not Ready";
-        Button button = info.GetComponentInChildren<Button>();
-        // no self-kick
-        button.interactable = isHost && !isLocalPlayer;
-        button.onClick.AddListener(() => CmdKickPlayer(this));
-    }
 
-    public override void OnClientExitRoom() => Destroy(info);
+        [Command]
+        public void CmdSetColor(Color newColor) {
+            color = newColor;
+        }
 
-    public override void ReadyStateChanged(bool oldReadyState, bool newReadyState) { if (info != null) info.GetComponentsInChildren<TMP_Text>()[1].text = newReadyState ? "Ready" : "Not Ready"; }
-    
-    public override void OnStartLocalPlayer()
-    {
-        Lobby.singleton.OnLocalPlayerReady();
-        if (info != null)
-            info.GetComponentInChildren<Button>().interactable = false;
+        [Command]
+        private void CmdKickPlayer(NRP player) {
+            // no self-kick
+            if (isHost && player.index != index)
+                player.connectionToClient.Disconnect();
+        }
+
+        private void ChangeName(string _, string newName) {
+            if (info != null) info.GetComponentsInChildren<TMP_Text>()[0].text = newName;
+        }
+
+        private void ChangeColor(Color _, Color newColor) {
+            if (info != null) info.GetComponentsInChildren<TMP_Text>()[0].color = newColor;
+        }
+
+        public override void OnClientEnterRoom() {
+            if (info != null) return;
+            info = Instantiate(Lobby.singleton.playerPrefab, Lobby.singleton.playerParent);
+            var texts = info.GetComponentsInChildren<TMP_Text>();
+            texts[0].text = playerName;
+            texts[0].color = color;
+            texts[1].text = readyToBegin ? "Ready" : "Not Ready";
+            var button = info.GetComponentInChildren<Button>();
+            // no self-kick
+            button.interactable = isHost && !isLocalPlayer;
+            button.onClick.AddListener(() => CmdKickPlayer(this));
+        }
+
+        public override void OnClientExitRoom() {
+            Destroy(info);
+        }
+
+        public override void ReadyStateChanged(bool oldReadyState, bool newReadyState) {
+            if (info != null) info.GetComponentsInChildren<TMP_Text>()[1].text = newReadyState ? "Ready" : "Not Ready";
+        }
+
+        public override void OnStartLocalPlayer() {
+            Lobby.singleton.OnLocalPlayerReady();
+            if (info != null)
+                info.GetComponentInChildren<Button>().interactable = false;
+        }
     }
 }

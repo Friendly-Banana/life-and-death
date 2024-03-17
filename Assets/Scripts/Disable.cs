@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LoD
-{
-    public class Disable : StateMachineBehaviour
-    {
+namespace LoD {
+    public class Disable : StateMachineBehaviour {
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         //{
@@ -19,9 +15,8 @@ namespace LoD
         //}
 
         // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-        override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-           animator.gameObject.SetActive(false);
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+            animator.gameObject.SetActive(false);
         }
 
         // OnStateMove is called right after Animator.OnAnimatorMove()

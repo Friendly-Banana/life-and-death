@@ -15,12 +15,12 @@ public class ApplyPalette : EditorWindow
     SerializedProperty listProp;
     SerializedProperty paletteProp;
     SerializedProperty colorsProp;
-    int lastEditedCount = 0;
+    int lastEditedCount;
 
     [MenuItem("Utils/ApplyPalette")]
     static void Init()
     {
-        ApplyPalette window = (ApplyPalette)EditorWindow.GetWindowWithRect(typeof(ApplyPalette), new Rect(0, 0, 200, 100));
+        ApplyPalette window = (ApplyPalette)GetWindowWithRect(typeof(ApplyPalette), new Rect(0, 0, 200, 100));
         window.Show();
     }
 

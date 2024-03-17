@@ -1,30 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LoD
-{
-    [System.Serializable]
-    public class GameOptions
-    {
+namespace LoD {
+    [Serializable]
+    public class GameOptions {
         public int stopRound = 5;
+
         // cells players can set per round
-        public int cellsToSet = 10;
-        public int boardWidth = 9;
-        public int boardHeight = 7;
-        public bool wrapAround = false;
-        public bool randomBoard = false;
-        public bool playersCanDie = true;
-        public List<int> revive = new List<int>() { 3 };
-        public List<int> stayAlive = new List<int>() { 2, 3 };
+        public int cellsToSet = 50;
+        public int boardWidth = 30;
+        public int boardHeight = 15;
+        public bool wrapAround;
+        public bool randomBoard;
+        public bool playersCanDie;
+        public List<int> revive = new() { 3 };
+        public List<int> stayAlive = new() { 2, 3 };
     }
 
-    public class Options : MonoBehaviour
-    {
+    public class Options : MonoBehaviour {
         public GameOptions data;
         public Toggle wrapAroundToggle;
         public Toggle randomToggle;
@@ -34,8 +30,7 @@ namespace LoD
         public Transform aliveParent;
         public List<Slider> sliders;
 
-        private void Awake()
-        {
+        private void Awake() {
 #if UNITY_IOS
 			// Forces a different code path in the BinaryFormatter that doesn't rely on run-time code generation (which would break on iOS).
 			System.Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");
@@ -43,48 +38,43 @@ namespace LoD
             data = SaveSystem.LoadSettings();
         }
 
-        private void Start()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                int new_i = i;
+        private void Start() {
+            for (var i = 0; i < 9; i++) {
+                var new_i = i;
                 // revive
-                GameObject rg = Instantiate(togglePrefab, reviveParent);
+                var rg = Instantiate(togglePrefab, reviveParent);
                 rg.GetComponentInChildren<TMP_Text>().text = i.ToString();
-                Toggle rToggle = rg.GetComponent<Toggle>();
+                var rToggle = rg.GetComponent<Toggle>();
                 rToggle.isOn = data.revive.Contains(i);
-                rToggle.onValueChanged.AddListener((bool b) => SetRevive(new_i, b));
+                rToggle.onValueChanged.AddListener(b => SetRevive(new_i, b));
                 // alive
-                GameObject ag = Instantiate(togglePrefab, aliveParent);
+                var ag = Instantiate(togglePrefab, aliveParent);
                 ag.GetComponentInChildren<TMP_Text>().text = i.ToString();
-                Toggle aToggle = ag.GetComponent<Toggle>();
+                var aToggle = ag.GetComponent<Toggle>();
                 aToggle.isOn = data.stayAlive.Contains(i);
-                aToggle.onValueChanged.AddListener((bool b) => SetStayAlive(new_i, b));
+                aToggle.onValueChanged.AddListener(b => SetStayAlive(new_i, b));
             }
+
             wrapAroundToggle.isOn = data.wrapAround;
             randomToggle.isOn = data.randomBoard;
             playersCanDie.isOn = data.playersCanDie;
-            int[] values = new int[] { data.stopRound, data.cellsToSet, data.boardWidth, data.boardHeight };
-            for (int i = 0; i < sliders.Count; i++)
-            {
+            int[] values = { data.stopRound, data.cellsToSet, data.boardWidth, data.boardHeight };
+            for (var i = 0; i < sliders.Count; i++) {
                 sliders[i].value = values[i];
                 sliders[i].GetComponentInChildren<TMP_Text>().text = values[i].ToString();
-                int index = i;
-                sliders[i].onValueChanged.AddListener((value) => SetSlider(index, value));
+                var index = i;
+                sliders[i].onValueChanged.AddListener(value => SetSlider(index, value));
             }
         }
 
-        public void SaveData()
-        {
+        public void SaveData() {
             SaveSystem.SaveSettings(data);
         }
 
-        void SetSlider(int index, Single newValue)
-        {
-            int value = Mathf.RoundToInt(newValue);
+        private void SetSlider(int index, float newValue) {
+            var value = Mathf.RoundToInt(newValue);
             sliders[index].GetComponentInChildren<TMP_Text>().text = value.ToString();
-            switch (index)
-            {
+            switch (index) {
                 case 0:
                     data.stopRound = value;
                     break;
@@ -100,31 +90,26 @@ namespace LoD
             }
         }
 
-        public void WrapAround()
-        {
+        public void WrapAround() {
             data.wrapAround = wrapAroundToggle.isOn;
         }
 
-        public void RandomBoard()
-        {
+        public void RandomBoard() {
             data.randomBoard = randomToggle.isOn;
         }
 
-        public void PlayersCanDie()
-        {
+        public void PlayersCanDie() {
             data.playersCanDie = playersCanDie.isOn;
         }
 
-        public void SetRevive(int new_value, bool b)
-        {
+        private void SetRevive(int new_value, bool b) {
             if (b)
                 data.revive.Add(new_value);
             else
                 data.revive.Remove(new_value);
         }
 
-        public void SetStayAlive(int new_value, bool b)
-        {
+        private void SetStayAlive(int new_value, bool b) {
             if (b)
                 data.stayAlive.Add(new_value);
             else

@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -61,7 +62,7 @@ namespace LoD
                 int minX = Mathf.Min(figure.width, width);
                 int minY = Mathf.Min(figure.height, height);
                 for (int i = 0; i < minX; i++)
-                    System.Array.Copy(figure.cells[i].array, newCells[i].array, minY);
+                    Array.Copy(figure.cells[i].array, newCells[i].array, minY);
 
                 Undo.RecordObject(figure, "Change size of figure");
                 figure.cells = newCells;
