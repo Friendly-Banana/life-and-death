@@ -20,7 +20,7 @@ namespace LoD {
     public class Game : NetworkBehaviour {
         public const string screenshotFolder = "Screenshots";
         private const string shareSubject = "Look at my board.";
-        private const string shareMessage = "Play Life or Death now.";
+        private const string shareMessage = "Play Life and Death now.";
         private const string shareUrl = "https://github.com/Friendly-Banana/DeathOrLife";
 
         public static Game singleton;

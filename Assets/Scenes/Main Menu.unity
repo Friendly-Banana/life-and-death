@@ -4564,7 +4564,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ce5e520be36106ae1b0127cbc3d23a85, type: 3}
   - {fileID: 21300000, guid: 149a637cf768d0d27bee4d10c79ef504, type: 3}
   texts:
-  - Welcome to <#2ECC71>Life <#3498DB>or <#E74C3C>Death<#ECF0F1>, the multiplayer
+  - Welcome to <#2ECC71>Life <#3498DB>and <#E74C3C>Death<#ECF0F1>, the multiplayer
     version of Game of Life.
   - What's Game of Life? A simulation of cells, each dead or alive.\nCells die and
     revive based on the amount of living neighbours.
